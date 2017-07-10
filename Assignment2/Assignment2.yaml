@@ -1,0 +1,235 @@
+swagger: "2.0"
+info:
+  description: "Welcome to the swapi, the Star Wars API! This documentation should help you familiarise yourself with the resources available and how to consume them with HTTP requests. If you're after a native helper library then I suggest you scroll down and check out what's available. Read through the getting started section before you dive in. Most of your problems should be solved just by reading through it.."    
+  version: "1.0.0"
+  title: "swapi"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "swapi.co"
+basePath: "/api"
+tags: 
+- name: "people"
+  description: "Create Documentation of swapi APIs"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swapi.co"
+- name: "films"
+  description: "Access to Star Wars film resources"
+- name: "species"
+  description: "Information about species"
+  externalDocs:
+    description: "Type of person in the Star War Universe"
+    url: "http://swapi.co"
+schemes:
+- "http"
+paths:
+  /people:
+    
+    get:
+      tags:
+      - "people"
+      summary: "Fetches all people"
+      description: "Returns all people resources of the Star War apis"
+      operationId: "getPeople"
+      produces:
+      - "application/xml"
+      - "application/json"
+      
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/People"
+        400:
+          description: "Invalid resource"
+        404:
+          description: "People not found"
+          
+  /people/{people_id}:
+    get:
+      tags:
+      - "people"
+      summary: "Find people by ID"
+      description: "Returns people with people_id"
+      operationId: "getPeopleById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "people_id"
+        in: "path"
+        description: "ID of people to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/People"
+        400:
+          description: "Invalid ID supplied"
+        404:
+          description: "People not found"
+    
+  /people/{schema} :
+    get:
+      tags:
+      - "schema"
+      summary: "Find people's schema"
+      description: "Returns people resources whole schema"
+      operationId: "getPeopleBySchema"
+      produces:
+      - "application/xml"
+      - "application/json"
+     
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/People"
+        400:
+          description: "Invalid schema supplied"
+        404:
+          description: "People schema not found"
+      
+    
+definitions:
+  People:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        
+      height:
+        type: "integer"
+        format: "int64"
+      mass:
+        type: "integer"
+        format: "int64"
+      hair_color:
+        type: "string"
+      skin_color:
+        type: "string"
+      eye_color:
+        type: "string"
+      birth_year:
+        type: "string"
+      gender:
+        type: "string"
+      homeworld:
+        type: "string"
+      films:
+        type: "array"
+      species:
+        type: "array"
+      vehicles:
+        type: "array"
+      starships:
+        type: "array"
+      created:
+        type: "string"
+      edited:
+        type: "string"
+      url:
+        type: "string"
+    xml:
+      name: "People"
+  Films:
+    type: "object"
+    properties:
+      title:
+        type: "string"
+      episode_id:
+        type: "integer"
+        format: "int64"
+      opening_crawl:
+        type: "string"
+      director:
+        type: "string"
+      producer:
+        type: "string"
+      release_date:
+        type: "string"
+        format: "date-time"
+      species:
+        type: "array"
+      starships:
+        type: "array"
+      vehicles:
+        type: "array"
+      characters:
+        type: "array"
+      planets:
+        type: "array"
+      url:
+        type: "string"
+      created:
+        type: "string"
+      edited:
+        type: "string"
+    xml:
+      name: "Films"
+  Species:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      classification:
+        type: "string"
+      designation:
+        type: "string"
+      average_height:
+        type: "string"
+      average_lifespan:
+        type: "string"
+      eye_colors:
+        type: "string"
+      skin_colors:
+        type: "string"
+      hair_colors:
+        type: "string"
+      language:
+        type: "string"
+      homeworld:
+        type: "string"
+      people:
+        $ref: "#/definitions/People"
+      films:
+        $ref: "#/definitions/Films"
+      url:
+        type: "string"
+      created:
+        type: "string"
+      edited:
+        type: "string"
+    xml:
+      name: "User"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+ 
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swapi"
+  url: "http://swapi.co"
