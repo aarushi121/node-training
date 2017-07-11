@@ -1,7 +1,7 @@
 swagger: "2.0"
 info:
-  description: "Welcome to the swapi, the Star Wars API! This documentation should help you familiarise yourself with the resources available and how to consume them with HTTP requests. If you're after a native helper library then I suggest you scroll down and check out what's available. Read through the getting started section before you dive in. Most of your problems should be solved just by reading through it.."    
-  version: "1.0.0"
+  description: "Welcome to the swapi, the Star Wars API! This documentation should help you familiarise yourself with the resources available and how to consume them with HTTP requests. If you're after a native helper library then I suggest you scroll down and check out what's available." 
+  version: ""
   title: "swapi"
   termsOfService: "http://swagger.io/terms/"
   contact:
@@ -17,15 +17,14 @@ tags:
   externalDocs:
     description: "Find out more"
     url: "http://swapi.co"
-- name: "films"
-  description: "Access to Star Wars film resources"
-- name: "species"
-  description: "Information about species"
+- name: "schema"
+  description: "View JSON schema for the resource"
   externalDocs:
     description: "Type of person in the Star War Universe"
     url: "http://swapi.co"
-schemes:
-- "http"
+schemes: 
+    - "http"
+
 paths:
   /people:
     
@@ -36,14 +35,13 @@ paths:
       description: "Returns all people resources of the Star War apis"
       operationId: "getPeople"
       produces:
-      - "application/xml"
       - "application/json"
       
       responses:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/People"
+            $ref: "#/definitions/FinalResult"
         400:
           description: "Invalid resource"
         404:
@@ -57,7 +55,6 @@ paths:
       description: "Returns people with people_id"
       operationId: "getPeopleById"
       produces:
-      - "application/xml"
       - "application/json"
       parameters:
       - name: "people_id"
@@ -76,7 +73,7 @@ paths:
         404:
           description: "People not found"
     
-  /people/{schema} :
+  /people/schema/ :
     get:
       tags:
       - "schema"
@@ -84,14 +81,13 @@ paths:
       description: "Returns people resources whole schema"
       operationId: "getPeopleBySchema"
       produces:
-      - "application/xml"
       - "application/json"
      
       responses:
         200:
           description: "successful operation"
           schema:
-            $ref: "#/definitions/People"
+            $ref: "#/definitions/FinalResult"
         400:
           description: "Invalid schema supplied"
         404:
@@ -125,111 +121,219 @@ definitions:
         type: "string"
       films:
         type: "array"
+        items:
+          type: "string"
       species:
         type: "array"
+        items:
+          type: "string"
       vehicles:
         type: "array"
+        items:
+          type: "string"
       starships:
         type: "array"
+        items:
+          type: "string"
       created:
         type: "string"
       edited:
         type: "string"
       url:
         type: "string"
-    xml:
-      name: "People"
-  Films:
+  FinalResult:
     type: "object"
     properties:
+      count:
+        type: "integer"
+        format: "int64"
+      next:
+        type: "string"
+      previous:
+        type: "null"
+      results:
+        type: "array"
+        items:
+          type: "object"
+          properties:
+            name:
+              type: "string"
+                
+            height:
+              type: "integer"
+              format: "int64"
+            mass:
+              type: "integer"
+              format: "int64"
+            hair_color:
+              type: "string"
+            skin_color:
+              type: "string"
+            eye_color:
+              type: "string"
+            birth_year:
+              type: "string"
+            gender:
+              type: "string"
+            homeworld:
+              type: "string"
+            films:
+              type: "array"
+              items:
+                type: "string"
+            species:
+              type: "array"
+              items:
+                type: "string"
+            vehicles:
+              type: "array"
+              items:
+                type: "string"
+            starships:
+              type: "array"
+              items:
+                type: "string"
+            created:
+              type: "string"
+            edited:
+              type: "string"
+            url:
+              type: "string"
+      
+  Schema:
+    type: "object"
+    properties:
+      type: 
+        type: "string"
+      required:
+        type: "array"
+        items:
+          type: "string"
+      schema:
+        type: "string"
+      properties:
+        type: "object"
+        properties:
+          species:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description:
+                type: "string"
+          homeworld:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          mass:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          skin_color:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          films:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          starships:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          edited:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+                format: "date-time"
+              description: 
+                type: "string"
+          gender:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          hair_color:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          vehicles:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          eye_color:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          url:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          birth_year:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          created:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          height:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+          name:
+            type: "object"
+            properties:
+              type: 
+                type: "string"
+              description: 
+                type: "string"
+      description:
+        type: "string"
       title:
         type: "string"
-      episode_id:
-        type: "integer"
-        format: "int64"
-      opening_crawl:
-        type: "string"
-      director:
-        type: "string"
-      producer:
-        type: "string"
-      release_date:
-        type: "string"
-        format: "date-time"
-      species:
-        type: "array"
-      starships:
-        type: "array"
-      vehicles:
-        type: "array"
-      characters:
-        type: "array"
-      planets:
-        type: "array"
-      url:
-        type: "string"
-      created:
-        type: "string"
-      edited:
-        type: "string"
-    xml:
-      name: "Films"
-  Species:
-    type: "object"
-    properties:
-      name:
-        type: "string"
-      classification:
-        type: "string"
-      designation:
-        type: "string"
-      average_height:
-        type: "string"
-      average_lifespan:
-        type: "string"
-      eye_colors:
-        type: "string"
-      skin_colors:
-        type: "string"
-      hair_colors:
-        type: "string"
-      language:
-        type: "string"
-      homeworld:
-        type: "string"
-      people:
-        $ref: "#/definitions/People"
-      films:
-        $ref: "#/definitions/Films"
-      url:
-        type: "string"
-      created:
-        type: "string"
-      edited:
-        type: "string"
-    xml:
-      name: "User"
-  Tag:
-    type: "object"
-    properties:
-      id:
-        type: "integer"
-        format: "int64"
-      name:
-        type: "string"
-    xml:
-      name: "Tag"
- 
-  ApiResponse:
-    type: "object"
-    properties:
-      code:
-        type: "integer"
-        format: "int32"
-      type:
-        type: "string"
-      message:
-        type: "string"
+          
+    
+
 externalDocs:
   description: "Find out more about Swapi"
   url: "http://swapi.co"
