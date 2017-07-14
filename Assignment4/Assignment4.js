@@ -1,14 +1,14 @@
 const fs = require('fs');
 
+function print(string) {
+  console.log(string);
+}
+
 function checkError(error) {
-  if(error) {
+  if (error) {
     print(error);
     throw error;
   }
-}
-
-function print(string) {
-  console.log(string);
 }
 
 function readAppendWrite(readFile, appendFile, writeFile) {
