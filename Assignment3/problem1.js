@@ -1,5 +1,5 @@
 module.exports = {
-  secondLargest : function (array) {
+  secondLargest : (array) => {
     var index;
     var array_length = array.length;
     var first = array[0];

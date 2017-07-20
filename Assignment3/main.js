@@ -3,10 +3,7 @@ var utility2 = require("./problem2.js");
 var utility3 = require("./problem3.js");
 var utility4 = require("./problem4.js");
 
-function print(string)
-{
-  console.log(string);
-}
+const print = (string) => console.log(string);
 
 var input1 = [1, 7, 10, 3, 8];
 var output1 = utility1.secondLargest(input1);
