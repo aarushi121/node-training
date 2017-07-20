@@ -1,7 +1,7 @@
 var toFlat = (unflat, tempKey, result) => {
-  if (typeof unflat == "object") {
-    for (var index_x in unflat){
-      toFlat (unflat[index_x], tempKey + "." + index_x, result);
+  if (typeof unflat === "object") {
+    for (var index in unflat){
+      toFlat (unflat[index], tempKey + "." + index, result);
     }
   }
   else
@@ -12,14 +12,14 @@ var toFlat = (unflat, tempKey, result) => {
 module.exports = {
   flatten : (unflatObject) => {
     var result = {};
-    for (var index_i in unflatObject) {
-      if ((typeof unflatObject[i]) == 'object') {
-        for (var index_j in unflatObject[index_i]) {
-          toFlat (unflatObject[i][j], index_i + "." + index_j, result);
+    for (var outerIndex in unflatObject) {
+      if ((typeof unflatObject[outerIndex]) === 'object') {
+        for (var innerIndex in unflatObject[outerIndex]) {
+          toFlat(unflatObject[outerIndex][innerIndex], outerIndex + "." + innerIndex, result);
         }
       }
       else {
-        result[i] = unflatObject[i];
+        result[outerIndex] = unflatObject[outerIndex];
       }
     }
     return result;

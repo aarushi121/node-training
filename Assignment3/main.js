@@ -1,16 +1,16 @@
-var utility1 = require("./problem1.js");
-var utility2 = require("./problem2.js");
-var utility3 = require("./problem3.js");
-var utility4 = require("./problem4.js");
+const utility1 = require("./problem1.js");
+const utility2 = require("./problem2.js");
+const utility3 = require("./problem3.js");
+const utility4 = require("./problem4.js");
 
 const print = (string) => console.log(string);
 
-var input1 = [1, 7, 10, 3, 8];
+const input1 = [1, 7, 10, 3, 8];
 var output1 = utility1.secondLargest(input1);
 print("Program 1 ----------------------\nArray = ["+input1+"]");
 print("Second Largest Value: "+output1+"\n");
 
-var input2 = "aarushi";
+const input2 = "aarushi";
 var output2 = utility2.calculateFrequency(input2);
 print("Program 2 ----------------------\nString = "+input2);
 print("Frequency values are ");
@@ -18,7 +18,7 @@ print(output2);
 print('\n');
 
 
-var input3 = { 
+const input3 = { 
   "flatJSON": false, 
   "i": { 
     "am": { 
@@ -41,7 +41,7 @@ print(output3);
 print('\n');
 
 
-var input4 = { 
+const input4 = { 
               "flatJSON": false, 
               "i.am.not.so.flat": true, 
               "i.am.not.so.unflat": false, 
