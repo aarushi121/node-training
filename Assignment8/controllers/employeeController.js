@@ -23,21 +23,30 @@ module.exports = {
   createEmployee : (req, res) => {
     const newEmployee = Employee(req.body);
     newEmployee.save( (error, result) => {
-      if (error) throw error;
+      if (error) {
+        console.log(error);
+        return res.send(error);
+      } 
       res.send("New employee created");
     });
   },
   deleteEmployee : (req, res) => {
     Employee.find( {_id : req.params.employee_id}, (error, result) => {
       result.remove( (error) => {
-        if(error) throw error;
+        if (error) {
+        console.log(error);
+        return res.send(error);
+      } 
         res.send("Succesfully deleted!");
       });
     });
   },
   updateEmployee : (req, res) => {
     Employee.findOneAndUpdate({_id : req.params.employee_id}, req.body, {new : true}, (error, result) => {
-      if (error) throw error;
+      if (error) {
+        console.log(error);
+        return res.send(error);
+      } 
       res.send("Employee details Updated!");
     });
   }

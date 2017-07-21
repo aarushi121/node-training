@@ -21,21 +21,30 @@ module.exports = {
   createProject : (req, res) => {
     const newProject = Project(req.body);
     newProject.save( (error) => {
-      if (error) throw error;
+      if (error) {
+        console.log(error);
+        return res.send(error);
+      } 
       res.send("New project created");
     });
   },
   deleteProject : (req, res) => {
     Project.find( {_id : req.params.project_id}, (error, result) => {
-      result.remove( (error) => {
-        if(error) throw error;
+      result.remove((error) => {
+        if (error) {
+          console.log(error);
+          return res.send(error);
+        } 
         res.send("Succesfully deleted!");
       });
     });
   },
   updateProject : (req, res) => {
     Project.findOneAndUpdate({_id : req.params.project_id}, req.body, {new : true}, (error, result) => {
-      if (error) throw error;
+      if (error) {
+        console.log(error);
+        return res.send(error);
+      } 
       res.send("Project details Updated!");
     });
   }
